@@ -1,3 +1,4 @@
+#include <fstream>
 #include <iostream>
 using namespace std;
 
@@ -11,6 +12,11 @@ struct CipherInfo {
   unsigned short int key;
   CipherOperation type;
 };
+
+bool does_file_exits(string path) {
+  ifstream file(path);
+  return file.good();
+}
 
 CipherInfo get_cipher_info() {
   CipherInfo cipher_info;
@@ -38,7 +44,12 @@ CipherInfo get_cipher_info() {
 
   cout << "Enter file name: ";
   cin >> cipher_info.filename;
-  // TODO(hammadmajid): check if the file exits
+  // handle the case where file doesn't exit
+  bool file_status = does_file_exits(cipher_info.filename);
+  if (!file_status) {
+    cout << "Error: the \"" << cipher_info.filename << "\" file doesn't exit" << endl;
+    exit(2);
+  }
 
   cout << "Enter cipher key: ";
   cin >> cipher_info.key;
