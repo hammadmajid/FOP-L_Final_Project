@@ -13,6 +13,15 @@ struct CipherInfo {
   CipherOperation type;
 };
 
+bool does_file_exits(string path);
+CipherInfo get_cipher_info();
+
+int main() {
+  CipherInfo info = get_cipher_info();
+
+  return 0;
+}
+
 bool does_file_exits(string path) {
   ifstream file(path);
   return file.good();
@@ -45,8 +54,7 @@ CipherInfo get_cipher_info() {
   cout << "Enter file name: ";
   cin >> cipher_info.filename;
   // handle the case where file doesn't exit
-  bool file_status = does_file_exits(cipher_info.filename);
-  if (!file_status) {
+  if (!does_file_exits(cipher_info.filename)) {
     cout << "Error: the \"" << cipher_info.filename << "\" file doesn't exit" << endl;
     exit(2);
   }
@@ -55,10 +63,4 @@ CipherInfo get_cipher_info() {
   cin >> cipher_info.key;
 
   return cipher_info;
-}
-
-int main() {
-  CipherInfo info = get_cipher_info();
-
-  return 0;
 }
