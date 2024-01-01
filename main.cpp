@@ -113,7 +113,8 @@ CipherData get_cipher_info() {
 }
 
 std::string get_file_content(std::string path) {
-  ifstream file(path);
+  ifstream file;
+  file.open(path, ios::in);
 
   if (!file.is_open()) {
     std::cout << "Error: Unable to open file " << path << std::endl;
@@ -171,7 +172,9 @@ void decrypt(string &content, int key) {
 }
 
 void write_to_file(string content, string file_path) {
-  ofstream file(file_path);
+  ofstream file;
+  file.open(file_path, ios::out);
+
   if (!file.is_open()) {
     cout << "Error: Unable to open file for writing" << endl;
     exit(4);
