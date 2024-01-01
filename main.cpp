@@ -112,30 +112,20 @@ CipherData get_cipher_info() {
   return cipher_info;
 }
 
-#include <fstream>
-#include <iostream>
-#include <sstream>
-
 std::string get_file_content(std::string path) {
-  std::ifstream file(path);
+  ifstream file(path);
 
   if (!file.is_open()) {
     std::cout << "Error: Unable to open file " << path << std::endl;
     exit(3);
   }
 
-  std::ostringstream contentStream;
-  char ch;
+  string line, content;
 
-  // Read each character from the file and append to the contentStream
-  while (file.get(ch)) {
-    contentStream.put(ch);
+  // Read each line from file and store it in content
+  while(getline(file, line)) {
+    content += line;
   }
-
-  file.close();
-
-  // Convert the contentStream to a string
-  std::string content = contentStream.str();
 
   return content;
 }
