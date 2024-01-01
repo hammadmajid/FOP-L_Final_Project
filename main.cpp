@@ -124,7 +124,7 @@ string get_file_content(string path) {
 
   // Read each line from file and store it in content
   while(getline(file, line)) {
-    content += line;
+    content += line + '\n';
   }
 
   return content;
