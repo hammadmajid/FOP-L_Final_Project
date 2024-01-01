@@ -131,12 +131,19 @@ std::string get_file_content(std::string path) {
 }
 
 void encrypt(string &content, int key) {
+  // Get the length of the content
+  int length = content.length();
+
   // Loop through each character in the content
-  for (char &ch : content) {
+  for (int i = 0; i < length; i++) {
+    // Get the current character
+    char &ch = content[i];
+
     // Encrypt only alphabetic characters
     if (isalpha(ch)) {
       // Determine the case (uppercase or lowercase) of the character
       char base = isupper(ch) ? 'A' : 'a';
+
       // Apply the Caesar cipher encryption formula
       ch = ((ch - base + key) % 26) + base;
     }
@@ -144,12 +151,19 @@ void encrypt(string &content, int key) {
 }
 
 void decrypt(string &content, int key) {
+  // Get the length of the content
+  int length = content.length();
+
   // Loop through each character in the content
-  for (char &ch : content) {
+  for (int i = 0; i < length; i++) {
+    // Get the current character
+    char &ch = content[i];
+
     // Decrypt only alphabetic characters
     if (isalpha(ch)) {
       // Determine the case (uppercase or lowercase) of the character
       char base = isupper(ch) ? 'A' : 'a';
+
       // Apply the Caesar cipher decryption formula
       ch = ((ch - base - key + 26) % 26) + base;
     }
