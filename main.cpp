@@ -44,8 +44,8 @@ void decrypt(string &content, int key);
 
 // Writes the provided content to the specified file
 // @param content The content to be written
-// @param file_path Path to the file
-void write_to_file(string content, string file_path);
+// @param path Path to the file
+void write_to_file(string content, string path);
 
 int main() {
   CipherData info = get_cipher_info();
@@ -170,9 +170,9 @@ void decrypt(string &content, int key) {
   }
 }
 
-void write_to_file(string content, string file_path) {
+void write_to_file(string content, string path) {
   ofstream file;
-  file.open(file_path, ios::out);
+  file.open(path, ios::out);
 
   if (!file.is_open()) {
     cout << "Error: Unable to open file for writing" << endl;
