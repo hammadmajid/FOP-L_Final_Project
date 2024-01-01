@@ -67,8 +67,15 @@ int main() {
 }
 
 bool does_file_exist(string path) {
-  ifstream file(path);
-  return file.good();
+  ifstream file;
+  file.open(path, ios::in);
+
+  if (file.good()) { // good() return true if file opens successfully
+    return true;
+  }
+  else {
+    return false;
+  }
 }
 
 CipherData get_cipher_info() {
