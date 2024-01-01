@@ -12,8 +12,7 @@ enum CipherOperation {
 struct CipherData {
   string filename;        ///< Path to the file that will be modified
   unsigned short int key; ///< The cipher key to use
-  CipherOperation
-      type; ///< Type of operation to perform (Encryption or Decryption)
+  CipherOperation type; ///< Type of operation to perform (Encryption or Decryption)
 };
 
 // Checks whether the specified file exists or not
@@ -112,12 +111,12 @@ CipherData get_cipher_info() {
   return cipher_info;
 }
 
-std::string get_file_content(std::string path) {
+string get_file_content(string path) {
   ifstream file;
   file.open(path, ios::in);
 
   if (!file.is_open()) {
-    std::cout << "Error: Unable to open file " << path << std::endl;
+    cout << "Error: Unable to open file " << path << endl;
     exit(3);
   }
 
