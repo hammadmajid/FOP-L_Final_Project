@@ -149,7 +149,12 @@ void encrypt(string &content, int key) {
     // Encrypt only alphabetic characters
     if (isalpha(ch)) {
       // Determine the case (uppercase or lowercase) of the character
-      char base = isupper(ch) ? 'A' : 'a';
+      char base;
+      if (isupper(ch)) {
+        base = 'A';
+      } else {
+        base = 'a';
+      }
 
       // Apply the Caesar cipher encryption formula
       ch = ((ch - base + key) % 26) + base;
@@ -169,7 +174,12 @@ void decrypt(string &content, int key) {
     // Decrypt only alphabetic characters
     if (isalpha(ch)) {
       // Determine the case (uppercase or lowercase) of the character
-      char base = isupper(ch) ? 'A' : 'a';
+      char base;
+      if (isupper(ch)) {
+        base = 'A';
+      } else {
+        base = 'a';
+      }
 
       // Apply the Caesar cipher decryption formula
       ch = ((ch - base - key + 26) % 26) + base;
