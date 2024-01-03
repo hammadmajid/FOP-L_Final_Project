@@ -4,53 +4,41 @@ using namespace std;
 
 // Enumeration representing the two types of cipher operations
 enum CipherOperation {
-  Encryption, ///< Represents the encryption operation
-  Decryption  ///< Represents the decryption operation
+  Encryption,
+  Decryption
 };
 
 // Struct to hold information required for ciphering
 struct CipherData {
-  string filename;        ///< Path to the file that will be modified
-  unsigned short int key; ///< The cipher key to use
-  CipherOperation type; ///< Type of operation to perform (Encryption or Decryption)
+  string filename;
+  unsigned short int key;
+  CipherOperation type;
 };
 
 // Checks whether the specified file exists or not
-// @param path Path to the file
-// @return true if the file exists, false otherwise
 bool does_file_exist(string path);
 
 // Prompts the user for input to populate the CipherData struct
 // If any of the provided data is invalid, the program will exit
-// @return A CipherData struct with user-provided information
 CipherData get_cipher_info();
 
 // Reads the entire content of a file
-// @param path Path to the file
-// @return The content of the given file as a string
 string get_file_content(string path);
 
 // Encrypts the content by shifting each character forward by 'n' positions,
 // where 'n' is the key
-// @param content The content to be encrypted
-// @param key The encryption key
 void encrypt(string &content, int key);
 
 // Decrypts the content by shifting each character backward by 'n' positions,
 // where 'n' is the key
-// @param content The content to be decrypted
-// @param key The decryption key
 void decrypt(string &content, int key);
 
 // Writes the provided content to the specified file
-// @param content The content to be written
-// @param path Path to the file
 void write_to_file(string content, string path);
 
 int main() {
   CipherData info = get_cipher_info();
 
-  // Read the content of the file
   string content = get_file_content(info.filename);
 
   // Perform encryption or decryption based on user choice
@@ -70,7 +58,7 @@ bool does_file_exist(string path) {
   ifstream file;
   file.open(path, ios::in);
 
-  if (file.good()) { // good() return true if file opens successfully
+  if (file.good()) {
     return true;
   }
   else {
@@ -131,14 +119,13 @@ string get_file_content(string path) {
 
   // Read each line from file and store it in content
   while(getline(file, line)) {
-    content += line + '\n';
+    content += line + "\n";
   }
 
   return content;
 }
 
 void encrypt(string &content, int key) {
-  // Get the length of the content
   int length = content.length();
 
   // Loop through each character in the content
@@ -163,7 +150,6 @@ void encrypt(string &content, int key) {
 }
 
 void decrypt(string &content, int key) {
-  // Get the length of the content
   int length = content.length();
 
   // Loop through each character in the content
